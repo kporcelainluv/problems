@@ -11,9 +11,9 @@ const a = addNums(5);
 
 // all
 
-const all = num => {
+const all = f => {
   function equals(list) {
-    return list.every(elem => elem === num);
+    return list.every(f);
   }
   return equals;
 };
