@@ -9,9 +9,7 @@ var strStr = function(haystack, needle) {
   let reserveIndex = 1;
   let needleIndex = 0;
   let res = [];
-  //   create while loop
   while (index < haystack.length) {
-    //   loop through elements if occurance is true
     if (haystack[index] === needle[needleIndex]) {
       res.push(index);
       index += 1;
@@ -19,7 +17,6 @@ var strStr = function(haystack, needle) {
       if (res.length === needle.length) {
         break;
       }
-      //   else go to next index and loop all over again
     } else {
       index = reserveIndex;
       reserveIndex += 1;
