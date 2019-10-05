@@ -5,7 +5,7 @@
   "main": "closure.js",
   "scripts": {
     "test": "jest",
-    "watch": "jest --watch longestPrefix"
+    "watch": "jest --watch findIndex"
   },
   "author": "",
   "license": "ISC",
