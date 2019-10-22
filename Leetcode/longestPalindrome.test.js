@@ -10,8 +10,8 @@ test("longestPalindrome", () => {
       "civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth"
     )
   ).toBe("ranynar");
-  expect(findMaxPalindrome("babad", 1, "odd")).toBe("bab");
-  expect(findMaxPalindrome("babad", 0, "odd")).toBe("b");
-  expect(findMaxPalindrome("babbad", 3, "even")).toBe("abba");
-  expect(findMaxPalindrome("abcdcba", 3, "odd")).toBe("abcdcba");
+  //   expect(findMaxPalindrome("babad", 1, "odd")).toBe("bab");
+  //   expect(findMaxPalindrome("babad", 0, "odd")).toBe("b");
+  //   expect(findMaxPalindrome("babbad", 3, "even")).toBe("abba");
+  //   expect(findMaxPalindrome("abcdcba", 3, "odd")).toBe("abcdcba");
 });

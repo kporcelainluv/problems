@@ -47,23 +47,25 @@ const findMaxPalindrome = (s, index, type) => {
     }
   }
 
-  return s.slice(start + 1, end);
+  return [start + 1, end];
 };
 
 const getMax = (max, candidate) => {
-  return max.length >= candidate.length ? max : candidate;
+  return max[1] - max[0] >= candidate[1] - candidate[0] ? max : candidate;
 };
 
 const solution = s => {
   if (s.length < 2) {
     return s;
   }
-  let maxPalindrome = s[0];
+
+  let maxPalindrome = [0, 1];
   for (let i = 0; i < s.length; i++) {
     maxPalindrome = getMax(maxPalindrome, findMaxPalindrome(s, i, "even"));
     maxPalindrome = getMax(maxPalindrome, findMaxPalindrome(s, i, "odd"));
   }
-  return maxPalindrome;
+
+  return s.slice(maxPalindrome[0], maxPalindrome[1]);
 };
 
 module.exports = { longestPalindrome: solution, findMaxPalindrome };
