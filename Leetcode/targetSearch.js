@@ -1,62 +1,37 @@
-const search = (list, target) => {
-  if (list.length === 0) {
-    return -1;
-  }
-  const zeroIndex = searchSmallestBinary(list);
-  const list1res = binarySearch(list, target, 0, zeroIndex);
-  const list2res = binarySearch(list, target, zeroIndex, list.length - 1);
-  if (list1res === -1 && list2res === -1) {
-    return -1;
-  } else if (list2res === -1 && list1res !== -1) {
-    return list1res;
-  } else {
-    return zeroIndex + list2res;
-  }
+const targetSearch = (list, target) => {
+  const zeroIndex = findListIndex(list, 0);
+  let list1 = list.slice(0, zeroIndex);
+  let list2 = list.slice(zeroIndex);
+  // console.log({ list1, list2 });
+  const checkList2 = binarySearch(list1, 4);
 };
+module.exports = targetSearch;
 
-const searchSmallestBinary = list => {
-  let start = 0;
-  let finish = list.length - 1;
-  while (start < finish) {
-    let mid = start + Math.floor((finish - start) / 2);
-    if (list[mid] > list[finish]) {
-      start = mid + 1;
-    } else {
-      finish = mid;
-    }
-  }
-
-  return start;
+const findListIndex = (list, num) => {
+  return list.findIndex(x => x === num);
 };
-
-const binarySearch = (list, target, start, finish) => {
-  let currentNum;
-  let currentIndex;
-  let listLength;
-
+const binarySearch = (list, target) => {
+  let currentNum = 0;
+  let currentIndex = 0;
   while (true) {
-    listLength = finish - start + 1;
-    if (listLength === 1) {
+    let listLength = list.length;
+    if (listLength % 2 === 0) {
+      currentNum = list[listLength / 2 - 1];
+    } else {
+      currentNum = list[Math.floor(listLength / 2)];
+      currentIndex = Math.floor(listLength / 2);
+    }
+    if (target > currentNum) {
+      list = list.slice(currentIndex + 1);
+    } else {
+      list = list.slice(0, currentIndex + 1);
+    }
+    if (list.length === 1) {
       break;
     }
-
-    currentIndex =
-      start +
-      (listLength % 2 === 0 ? listLength / 2 - 1 : Math.floor(listLength / 2));
-    currentNum = list[currentIndex];
-
-    if (target > currentNum) {
-      start = currentIndex + 1;
-    } else {
-      finish = currentIndex;
-    }
   }
-  if (list[start] === target) {
-    return start;
+  if (list[0] === target) {
+    return true;
   }
   return -1;
 };
-
-module.exports = search;
-module.exports = binarySearch;
-module.exports = searchSmallestBinary;
