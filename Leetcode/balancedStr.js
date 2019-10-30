@@ -1,24 +1,19 @@
-const checkLetters = (str, res) => {
-  if (str.length < 2) {
-    return res;
-  }
-  if (str[0] === "L") {
-    if (str[1] === "R") {
-      return checkLetters(str.slice(2), res + 1);
-    } else {
-      return checkLetters(str.slice(1), res);
-    }
-  }
-  if (str[0] === "R") {
-    if (str[1] === "L") {
-      return checkLetters(str.slice(2), res + 1);
-    } else {
-      return checkLetters(str.slice(1), res);
-    }
-  }
-};
-
 const balancedStringSplit = str => {
-  return checkLetters(str, 0);
+  let varL = 0;
+  let varR = 0;
+  let res = 0;
+  str.split("").forEach(elm => {
+    if (elm === "L") {
+      varL += 1;
+    } else if (elm === "R") {
+      varR += 1;
+    }
+    if (varL === varR) {
+      res += 1;
+      varR = 0;
+      varL = 0;
+    }
+  });
+  return res;
 };
 module.exports = balancedStringSplit;
