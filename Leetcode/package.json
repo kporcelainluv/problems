@@ -5,7 +5,7 @@
   "main": "closure.js",
   "scripts": {
     "test": "jest",
-    "watch": "jest --watch lastStone.js"
+    "watch": "jest --watch commonChars.js"
   },
   "author": "",
   "license": "ISC",
