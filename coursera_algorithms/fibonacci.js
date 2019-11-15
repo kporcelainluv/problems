@@ -1,4 +1,18 @@
-const fibNums = num => {
+const readline = require("readline");
+const rl = readline.createInterface({
+  input: process.stdin,
+  terminal: false
+});
+
+process.stdin.setEncoding("utf8");
+rl.on("line", readLine);
+
+function readLine(line) {
+  console.log(fib(parseInt(line, 10)));
+  process.exit();
+}
+
+function fib(num) {
   if (num < 2) {
     return num;
   }
@@ -14,5 +28,6 @@ const fibNums = num => {
     index += 1;
   }
   return first;
-};
-console.log(fibNums(10));
+}
+
+module.exports = fib;
