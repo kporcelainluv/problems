@@ -13,10 +13,11 @@ function readLine(line) {
 }
 
 const getSumOfLastFibNum = num => {
-  let first = 1;
+  num = num % 60;
+  let first = 0;
   let second = 1;
   let third = 1;
-  for (let i = 0; i < num - 1; i++) {
+  for (let i = 0; i < num; i++) {
     third = (first + second) % 10;
     first = second;
     second = third;
