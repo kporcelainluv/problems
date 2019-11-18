@@ -26,5 +26,5 @@ const getMoneyChange = num => {
       index += 1;
     }
   }
-  console.log(coinsAmount);
+  return coinsAmount;
 };
