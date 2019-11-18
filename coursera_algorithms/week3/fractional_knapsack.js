@@ -43,8 +43,9 @@ function max(count, capacity, itemsVals) {
   });
   let index = 0;
   let moneyValue = 0;
-  while (capacity > 0) {
+  while (index < sorteditemsVals.length) {
     let [value, weight] = sorteditemsVals[index];
+
     value = parseFloat(value);
     if (capacity >= weight) {
       moneyValue += value;
