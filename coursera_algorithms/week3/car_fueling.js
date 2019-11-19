@@ -44,7 +44,7 @@ function carFueling(duration, miles, stopsAmount, stopsVals) {
 
     while (
       currentRefill <= maxDuration &&
-      stopsVals[currentRefill + 1] - stopsVals[lastRefill] < miles
+      sortedStopsVals[currentRefill + 1] - sortedStopsVals[lastRefill] <= miles
     ) {
       currentRefill += 1;
     }
@@ -58,5 +58,6 @@ function carFueling(duration, miles, stopsAmount, stopsVals) {
     }
   }
 }
-
+// console.log(carFueling(500, 200, 4, [100, 200, 300, 400]));
+// console.log(carFueling(950, 400, 4, [200, 375, 550, 750]));
 module.exports = carFueling;
