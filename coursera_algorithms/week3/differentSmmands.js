@@ -11,7 +11,9 @@ function readLine(line) {
   const summands = differentSummands(parseInt(line));
   const length = summands.length;
   console.log(length);
-  console.log(summands.join(" "));
+  for (const summand of summands) {
+    process.stdout.write(`${summand} `);
+  }
   process.exit();
 }
 
@@ -37,4 +39,3 @@ const differentSummands = n => {
   }
   return summands;
 };
-differentSummands(2);
