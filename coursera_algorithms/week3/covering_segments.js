@@ -11,5 +11,3 @@ function readLine(line) {
   console.log(getSumOfLastFibNum(parseInt(line)));
   process.exit();
 }
-
-const
