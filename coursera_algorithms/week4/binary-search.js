@@ -10,7 +10,8 @@ rl.once("line", line => {
     .toString()
     .split(" ")
     .slice(1)
-    .map(Number);
+    .map(Number)
+    .sort((a, b) => a - b);
 
   rl.once("line", line => {
     const keys = line
@@ -23,7 +24,6 @@ rl.once("line", line => {
     for (let key of keys) {
       result.push(binarySearch(arr, key));
     }
-
     const res = result.join(" ");
     const maxLength = 50000;
 
