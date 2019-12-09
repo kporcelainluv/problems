@@ -36,9 +36,11 @@ rl.once("line", line => {
   });
 });
 
-function binarySearch(arr = [], key) {
+function binarySearch(arr, key) {
   let start = 0;
   let end = arr.length - 1;
+  let midIndex;
+  let midElement;
 
   while (start <= end) {
     midIndex = start + Math.floor((end - start) / 2);
