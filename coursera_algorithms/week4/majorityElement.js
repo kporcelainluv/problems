@@ -22,17 +22,19 @@ const majorityElm = (n, arr) => {
   let currentAmount = 0;
   let currentNum = sortedArr[0];
   let maxAmount = 0;
-  for (let i = 0; i < n; i++) {
+
+  for (let i = 0; i <= n; i++) {
     if (sortedArr[i] === currentNum) {
       currentAmount += 1;
     } else {
       if (currentAmount > maxAmount) {
         maxAmount = currentAmount;
       }
-      currentAmount = 0;
+      currentAmount = 1;
       currentNum = sortedArr[i];
     }
   }
+
   if (maxAmount > amountOfElms) {
     return 1;
   } else {
