@@ -7,17 +7,22 @@ const rl = readline.createInterface({
 process.stdin.setEncoding("utf8");
 
 rl.once("line", line => {
-  const [gapsAmount, numsAmount] = line.split(" ").map(elm => Number(elm));
+  const [gapsAmount, numsAmount] = line.split(" ").map(elm => parseInt(elm));
   let gaps = [];
   let nums = [];
 
   rl.on("line", line => {
     if (gaps.length === gapsAmount) {
-      nums = line.split(" ").map(elm => Number(elm));
-      console.log(getGapNum(gaps, nums));
+      nums = line.split(" ", numsAmount).map(elm => parseInt(elm));
+
+      const res = getGapNum(gaps, nums);
+      const maxLength = 50000;
+      for (let i = 0; i < res.length; i += maxLength) {
+        process.stdout.write(res.slice(i, i + maxLength));
+      }
       process.exit();
     }
-    gaps = [...gaps, line.split(" ").map(elm => Number(elm))];
+    gaps = [...gaps, line.split(" ", 2).map(elm => parseInt(elm))];
   });
 });
 
