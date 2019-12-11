@@ -1,42 +1,42 @@
-const readline = require("readline");
-const rl = readline.createInterface({
-  input: process.stdin,
-  terminal: false
-});
+// const readline = require("readline");
+// const rl = readline.createInterface({
+//   input: process.stdin,
+//   terminal: false
+// });
+//
+// process.stdin.setEncoding("utf8");
+//
+// rl.once("line", line => {
+//   const [gapsAmount, numsAmount] = line.split(" ").map(elm => parseInt(elm));
+//   let gaps = [];
+//   let nums = [];
+//
+//   rl.on("line", line => {
+//     if (gaps.length === gapsAmount) {
+//       nums = line.split(" ", numsAmount).map(elm => parseInt(elm));
+//
+//       const res = getGapNum(gaps, nums).join(" ");
+//       const maxLength = 50000;
+//       for (let i = 0; i < res.length; i += maxLength) {
+//         process.stdout.write(res.slice(i, i + maxLength));
+//       }
+//       process.exit();
+//     }
+//     gaps = [...gaps, line.split(" ", 2).map(elm => parseInt(elm))];
+//   });
+// });
 
-process.stdin.setEncoding("utf8");
-
-rl.once("line", line => {
-  const [gapsAmount, numsAmount] = line.split(" ").map(elm => parseInt(elm));
-  let gaps = [];
-  let nums = [];
-
-  rl.on("line", line => {
-    if (gaps.length === gapsAmount) {
-      nums = line.split(" ", numsAmount).map(elm => parseInt(elm));
-
-      const res = getGapNum(gaps, nums).join(" ");
-      const maxLength = 50000;
-      for (let i = 0; i < res.length; i += maxLength) {
-        process.stdout.write(res.slice(i, i + maxLength));
-      }
-      process.exit();
-    }
-    gaps = [...gaps, line.split(" ", 2).map(elm => parseInt(elm))];
-  });
-});
-
-const getGapNum = (gaps, nums) => {
+const getJointArray = (gaps, nums) => {
   let sortedGaps = [];
   for (let i of nums) {
     sortedGaps.push([i, "p"]);
   }
-  for (let i of gaps) {
-    sortedGaps.push([i[0], "l"]);
-    sortedGaps.push([i[1], "r"]);
+  for (let i = 0; i < gaps.length; i++) {
+    sortedGaps.push([gaps[i][0], "l", i]);
+    sortedGaps.push([gaps[i][1], "r", i]);
   }
 
-  sortedGaps = sortedGaps.sort((a, b) => {
+  return sortedGaps.sort((a, b) => {
     if (a[0] > b[0]) {
       return 1;
     } else if (a[0] < b[0]) {
@@ -49,6 +49,17 @@ const getGapNum = (gaps, nums) => {
       }
     }
   });
+};
+
+const getGapsPresence = (obj, nums) => {
+  let vals = [];
+  for (let i of nums) {
+    vals.push(obj[i]);
+  }
+  return vals;
+};
+
+const getPresence = (sortedGaps, nums) => {
   let index = 0;
   let left = false;
   let right = false;
@@ -73,16 +84,20 @@ const getGapNum = (gaps, nums) => {
       onHold = [];
     }
   }
-  let vals = [];
-
-  for (let i of nums) {
-    vals.push(res[i]);
-  }
-  return vals;
+  return res;
 };
 
-// test("1", () => {
-// expect(getGapNum([[0, 5], [7, 10]], [1, 6, 11])).toStrictEqual([1, 0, 0]);
-// expect(getGapNum([[-10, 10]], [-100, 100, 0])).toStrictEqual( 0, 0,1]);
-// expect(getGapNum([[0, 5], [-3, 2], [7, 10]], [1, 6])).toStrictEqual(2, 0]);
-// });
+const getGapNum = (gaps, nums) => {
+  const sortedGaps = getJointArray(gaps, nums);
+
+  const presence = getPresence(sortedGaps, nums);
+
+  const gapsPresence = getGapsPresence(presence, nums);
+  return gapsPresence;
+};
+
+test("1", () => {
+  expect(getGapNum([[0, 5], [7, 10]], [1, 6, 11])).toStrictEqual([1, 0, 0]);
+  expect(getGapNum([[-10, 10]], [-100, 100, 0])).toStrictEqual([0, 0, 1]);
+  expect(getGapNum([[0, 5], [-3, 2], [7, 10]], [1, 6])).toStrictEqual([2, 0]);
+});
