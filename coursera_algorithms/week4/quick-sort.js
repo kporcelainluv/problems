@@ -66,11 +66,3 @@ const randomized_quick_sort = (arr, l, r) => {
   return arr;
 };
 
-// const mySort = arr => {
-//   return randomized_quick_sort(arr, 0, arr.length - 1);
-// };
-//
-// test("1", () => {
-//   expect(mySort([2, 3, 9, 2, 2])).toStrictEqual([2, 2, 2, 3, 9]);
-//   expect(mySort([2, 3, 9, 2, 9])).toStrictEqual([2, 2, 3, 9, 9]);
-// });
