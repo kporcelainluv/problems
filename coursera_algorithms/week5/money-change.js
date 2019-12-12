@@ -48,6 +48,6 @@ const getMoneyChange2 = (money, coins, mem) => {
 const getMoneyChange1 = (money, coins) => {
   const mem = {
     0: 0
-  };
+};
   return getMoneyChange2(money, coins, mem);
 };
