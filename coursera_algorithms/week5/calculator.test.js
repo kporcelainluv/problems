@@ -1,3 +1,18 @@
+const readline = require("readline");
+const rl = readline.createInterface({
+  input: process.stdin,
+  terminal: false
+});
+
+process.stdin.setEncoding("utf8");
+
+rl.once("line", line => {
+  const money = parseInt(line);
+  const res = solve(money);
+  console.log(res.length - 1);
+  console.log(res.join(" "));
+  process.exit();
+});
 const updateMem = (mem, i, prev) => {
   const nextLength = mem[prev][1] + 1;
   const currentMem = mem[i];
@@ -6,27 +21,25 @@ const updateMem = (mem, i, prev) => {
   }
 };
 
-const solve_ = (prev, i, N, mem) => {
-  params.push([i*3, i]);
-  params.push([i*2, i]);
-  params.push([i+1, i]);
-
+const solve_ = (curr, prev, N, mem) => {
+  const params = [[curr, prev]];
   while (params.length !== 0) {
-    const [i_, prev_] = params.pop();
-
-    if (i_ > N) {
+    const [curr, prev] = params.pop();
+    if (curr > N) {
       continue;
     }
+    updateMem(mem, curr, prev);
 
-    updateMem(mem, i, prev);
+    if (curr + 1 <= N && !mem[curr + 1]) {
+      params.push([curr + 1, curr]);
+    }
+    if (curr * 2 <= N) {
+      params.push([curr * 2, curr]);
+    }
+    if (curr * 3 <= N) {
+      params.push([curr * 3, curr]);
+    }
   }
-
-
-
-  // console.log({ mem, N, prev, i });
-  solve_(i, i * 3, N, mem);
-  solve_(i, i * 2, N, mem);
-  solve_(i, i + 1, N, mem);
 };
 
 const buildSolution = (mem, i, solution) => {
@@ -41,12 +54,14 @@ const solve = N => {
   const mem = {
     1: [1, 1]
   };
-  solve_(1, 2, N, mem);
-  solve_(1, 3, N, mem);
+  solve_(2, 1, N, mem);
+  solve_(3, 1, N, mem);
+
+  // console.log(mem);
 
   const solution = [];
   buildSolution(mem, N, solution);
-  console.log(solution);
+  return solution.reverse();
 };
 
-console.log(solve(96234));
+// console.log(solve(96234));
