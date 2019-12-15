@@ -19,12 +19,14 @@ const getEvaluation = (a, b, operation) => {
     return a - b;
   } else if (operation === "*") {
     return a * b;
+  } else {
+    return false;
   }
 };
 const getMinMax = (M, m, operations, i, j) => {
-  let minimum = Number.MIN_VALUE;
-  let maximum = -Number.MAX_VALUE;
-  for (let k = 0; k < j; k++) {
+  let minimum = 1000000000;
+  let maximum = -100000000;
+  for (let k = i; k < j; k++) {
     let a = getEvaluation(M[i][k], M[k + 1][j], operations[k]);
     let b = getEvaluation(M[i][k], m[k + 1][j], operations[k]);
     let c = getEvaluation(m[i][k], M[k + 1][j], operations[k]);
